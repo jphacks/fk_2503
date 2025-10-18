@@ -12,7 +12,7 @@ export default function StartButton() {
 
     return (
         <div>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-8 px-16 rounded" onClick={ startCamera }>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white text-xl font-bold py-8 px-16 rounded" onClick={ startCamera }>
                 スタート
             </button>
         </div>

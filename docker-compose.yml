@@ -7,9 +7,18 @@ services:
       dockerfile: backend/Dockerfile
     env_file:
       - backend/.env
+    environment:
+      - PYTHONPATH=/app
     ports:
       - "8000:8000"
     restart: unless-stopped
     volumes:
       - ./backend:/app
-    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    command: [
+      "uvicorn", "app.main:app",
+      "--host", "0.0.0.0",
+      "--port", "8000",
+      "--reload",
+      "--app-dir", "/app",
+      "--reload-dir", "/app/app"
+    ]

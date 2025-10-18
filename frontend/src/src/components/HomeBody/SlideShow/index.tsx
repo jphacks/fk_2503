@@ -4,8 +4,8 @@ import Slide1 from './SlideTutorial/TutorialDetails1';
 import Slide2 from './SlideTutorial/TutorialDetails2';
 import Slide3 from './SlideTutorial/TutorialDetails3';
 import Slide4 from './SlideTutorial/TutorialDetails4';
-import nextButton from "../../../assets/img/nextPageButton.png"
-import backButton from "../../../assets/img/backPageButton.png"
+import nextButton from "../../../../assets/img/nextPageButton.png"
+import backButton from "../../../../assets/img/backPageButton.png"
 
 const slides = [<Slide1 />, <Slide2 />, <Slide3 />, <Slide4 />];
 
@@ -25,7 +25,7 @@ export default function SlideShow() {
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mb-20">
       <SwipeableViews index={index} onChangeIndex={handleChangeIndex} enableMouseEvents>
         {slides.map((slide, i) => (
           <div key={i}>{slide}</div>

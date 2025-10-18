@@ -49,6 +49,9 @@ export default function PhotoConfirmation() {
             </button>
           )}
         </div>
+        <div className="absolute bottom-4 right-4 text-white text-lg">
+          {imageCount}/5
+        </div>
       </div>
     </div>
   );

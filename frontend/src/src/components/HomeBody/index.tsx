@@ -3,7 +3,7 @@ import StartButton from "./StartButton/StartButon";
 
 export default function Main() {
     return(
-        <main className="flex-col flex justify-center items-center">
+        <main className="flex-col flex justify-center items-center bg-black">
             <SlideShow />
             <StartButton />
         </main>

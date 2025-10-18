@@ -1,4 +1,3 @@
-import Header from "../../components/Header";
 import backButton from "../../../assets/img/backPage.png";
 import CameraBody from "../../components/CameraBody";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +14,12 @@ export default function CameraScreen() {
 
   return (
     <div className="flex flex-col min-h-screen bg-black">
-      <Header title={<img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />} />
+      <div className="w-full h-20 bg-green-500 border-b-gray-600">
+        <div className="flex h-full items-center">
+          <img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />
+          <span className="text-2xl font-bold ml-4">AIスキャン</span>
+        </div>
+      </div>
       <CameraBody />
       <div className="absolute bottom-4 right-4 text-white text-lg">
         {imageCount}/5

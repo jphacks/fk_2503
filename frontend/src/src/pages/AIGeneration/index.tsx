@@ -40,6 +40,9 @@ export default function AIGeneration() {
             これをもとにAI生成を行いますか？
           </button>
         </div>
+        <div className="absolute bottom-4 right-4 text-white text-lg">
+          {images.length}/5
+        </div>
       </div>
     </div>
   );

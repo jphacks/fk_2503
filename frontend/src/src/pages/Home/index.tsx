@@ -5,7 +5,7 @@ import SlideShow from "../../components/SlideShow"
 export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
-            <Header title="ホーム"/>
+            <Header title="リサクリ"/>
             <SlideShow />
             <Main />
         </div>

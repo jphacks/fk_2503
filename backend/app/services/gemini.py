@@ -250,10 +250,26 @@ def generate_diy_ideas(description: str) -> dict:
             "required": ["ideas"],
         }
 
-    model = genai.GenerativeModel(
-        model_name=chosen_full_name,
-        generation_config=gen_cfg,
-    )
+    # Create model, but gracefully fall back if response_schema isn't supported
+    try:
+        model = genai.GenerativeModel(
+            model_name=chosen_full_name,
+            generation_config=gen_cfg,
+        )
+    except Exception as e:
+        # Some SDK versions raise on unknown schema fields (e.g., additionalProperties)
+        # Remove schema and retry to avoid hard failure.
+        if settings.gemini_use_schema and "Schema" in str(e):
+            try:
+                gen_cfg.pop("response_schema", None)
+                model = genai.GenerativeModel(
+                    model_name=chosen_full_name,
+                    generation_config=gen_cfg,
+                )
+            except Exception:
+                raise HTTPException(status_code=500, detail=f"Gemini model init failed: {e}")
+        else:
+            raise HTTPException(status_code=500, detail=f"Gemini model init failed: {e}")
 
     prompt = _format_prompt(description)
     try:

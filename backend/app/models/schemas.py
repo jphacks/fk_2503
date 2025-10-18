@@ -13,6 +13,8 @@ class DIYIdea(BaseModel):
 
 
 class ModelAsset(BaseModel):
+    # Avoid Pydantic warning about protected namespace "model_"
+    model_config = {"protected_namespaces": ()}
     model_url: Optional[str] = None
     preview_image_url: Optional[str] = None
     format: Optional[str] = None  # e.g., glb, obj, fbx
@@ -21,4 +23,3 @@ class ModelAsset(BaseModel):
 class GenerateResponse(BaseModel):
     model: ModelAsset
     ideas: List[DIYIdea]
-

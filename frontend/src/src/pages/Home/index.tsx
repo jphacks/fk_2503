@@ -1,13 +1,11 @@
 import Header from "../../components/Header"
-import Main from "../../components/Main"
-import SlideShow from "../../components/SlideShow"
+import HomeBody from "../../components/HomeBody"
 
 export default function Home() {
     return (
         <div className="flex flex-col min-h-screen">
             <Header title="リサクリ"/>
-            <SlideShow />
-            <Main />
+            <HomeBody />
         </div>
     )
 }

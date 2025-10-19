@@ -1,10 +1,7 @@
 
 # ゴブジェクター
 
-<img width="1920" height="1080" alt="gob" src="https://github.com/user-attachments/assets/eb862f94-df96-4ba7-8b32-abdb758d8b67" />
-
-![27](https://github.com/user-attachments/assets/ba589e98-2c60-48fe-a4f8-75b77eced5ec)
-
+<img width="1920" height="1080" alt="gob" src="https://github.com/user-attachments/assets/ba589e98-2c60-48fe-a4f8-75b77eced5ec" />
 
 ## 製品概要
 リサイクル×Teck：捨てられてしまうごみを<b>ゴブジェクト</b>として生まれ変わらせる、AI工作提案アプリです。</br>

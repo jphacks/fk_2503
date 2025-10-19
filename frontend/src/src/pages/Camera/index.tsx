@@ -16,7 +16,7 @@ export default function CameraScreen() {
     <div className="flex flex-col min-h-screen bg-black">
       <div className="w-full h-20 bg-green-500 border-b-gray-600">
         <div className="flex h-full items-center">
-          <img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />
+          <img src={backButton} alt="Back" className="ml-6 w-5 h-8" onClick={() => navigate('/')} />
           <span className="text-2xl font-bold ml-4">AIスキャン</span>
         </div>
       </div>

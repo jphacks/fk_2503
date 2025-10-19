@@ -36,7 +36,7 @@ export default function ShowCamera() {
         ref={webcamRef}
         screenshotFormat="image/jpeg"
         videoConstraints={videoConstraints}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
       <div className="absolute bottom-0 w-full flex justify-center p-4">
         {imageCount < 5 && (

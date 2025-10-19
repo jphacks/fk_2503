@@ -20,7 +20,7 @@ export default function Header({ title }: HeaderProps) {
         <div className="w-full h-20 bg-green-500 border-b-gray-600">
             <div className="flex h-full items-center justify-between">
                 <div className="text-2xl font-bold ml-6" onClick={clickHome}>{title}</div>
-                <img src={logoutButton} alt="ログアウト" className="mr-6 w-10 h-10" />
+                {/* <img src={logoutButton} alt="ログアウト" className="mr-6 w-10 h-10" /> */}
             </div>
         </div>
     )

@@ -1,6 +1,5 @@
 # ゴブジェクター
-
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2025/05/JPHACKS2025_ogp.jpg)](https://www.youtube.com/watch?v=lA9EluZugD8)
+<img width="1920" height="1080" alt="27" src="https://github.com/user-attachments/assets/f69997fa-128a-4bcd-a10e-01233d2725b1" />
 
 ## 製品概要
 リサイクル×Teck：捨てられてしまうごみを<b>ゴブジェクト</b>として生まれ変わらせる、AI工作提案アプリです。</br>
@@ -15,12 +14,8 @@
 「ゴブジェクター」は、ユーザーが不要な物をカメラで撮影すると、AIが自動で素材や形状を分析し、その特性に合わせた工作アイデアを難易度別に提示します。</br>
 提案には、作り方の手順を説明する文章と図解、そして完成イメージも含まれています。</br>
 アプリの基本的な流れは以下の通りです。</br>
-<ol>
-<b><li>写真撮影：</b>ユーザーが再利用したい物を撮影</li>
-<b><li>AI解析：</b>AIが素材や形状を自動認識</li>
-<b><li>提案生成：</b>AIが難易度別にアイデアを提示</li>
-<b><li>ガイド表示：</b>完成イメージと手順をセットで表示</li>
-  </ol>
+
+<img width="1920" height="1080" alt="28" src="https://github.com/user-attachments/assets/8fb9955f-fb76-4617-8921-21c43ad94b03" />
 
 ### 特長
 #### 1. ワンショットで自動提案
@@ -50,6 +45,8 @@
 生成精度の向上に注力し、より自然で魅力的な提案が行えるよう工夫しました。また、APIキーの流出を防ぐなど、セキュリティ面にも配慮して開発を進めました。
 
 ## 開発技術
+
+<img width="1920" height="1080" alt="stack" src="https://github.com/user-attachments/assets/2497952f-0d97-4e1a-9f26-c1c3104d01a6" />
 
 ### 活用した技術
 #### API・データ

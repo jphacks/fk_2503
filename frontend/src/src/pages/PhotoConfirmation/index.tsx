@@ -28,7 +28,7 @@ export default function PhotoConfirmation() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header title={<img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />} />
+      <Header />
       <div className="flex-grow flex flex-col items-center justify-center p-4">
         {imageSrc && (
           <img src={imageSrc} alt="Captured" className="max-w-full max-h-96 object-contain" />

@@ -1,5 +1,10 @@
 from pydantic import BaseModel, Field
-from typing import List, Optional
+from typing import List, Optional, Union
+
+
+class Step(BaseModel):
+    text: str
+    operation: Optional[str] = None  # 例: 貼り付ける/のりを塗る/切る/色を塗る/削る/その他
 
 
 class DIYIdea(BaseModel):
@@ -7,7 +12,8 @@ class DIYIdea(BaseModel):
     description: str
     materials: List[str] = Field(default_factory=list)
     tools: List[str] = Field(default_factory=list)
-    steps: List[str] = Field(default_factory=list)
+    # 後方互換のため、文字列/オブジェクト両方を許容
+    steps: List[Union[str, Step]] = Field(default_factory=list)
     difficulty: Optional[str] = None
     estimated_time_minutes: Optional[int] = None
 

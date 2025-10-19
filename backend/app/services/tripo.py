@@ -81,7 +81,9 @@ class TripoClient:
         direct_model_url = (
             payload.get("model_url")
             or payload.get("assets", {}).get("glb")
+            or payload.get("assets", {}).get("obj")
             or payload.get("glb")
+            or payload.get("obj")
             or payload.get("model_glb")
         )
         if direct_model_url:
@@ -126,8 +128,11 @@ class TripoClient:
                 model_url = (
                     sjson.get("model_url")
                     or sjson.get("assets", {}).get("glb")
+                    or sjson.get("assets", {}).get("obj")
                     or sjson.get("result", {}).get("glb")
+                    or sjson.get("result", {}).get("obj")
                     or sjson.get("glb")
+                    or sjson.get("obj")
                     or sjson.get("model_glb")
                 )
                 preview_url = (
@@ -142,7 +147,11 @@ class TripoClient:
 
                 # Some APIs include result before a final status; prioritize explicit success
                 if model_url and (not status or str(status).lower() in success_states):
-                    fmt = "glb" if model_url.endswith(".glb") else sjson.get("format")
+                    fmt = (
+                        "glb" if str(model_url).endswith(".glb") else (
+                            "obj" if str(model_url).endswith(".obj") else sjson.get("format")
+                        )
+                    )
                     return {"model_url": model_url, "preview_image_url": preview_url, "format": fmt}
 
                 # Not ready yet

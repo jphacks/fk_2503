@@ -14,9 +14,12 @@ def _format_prompt(description: str) -> str:
         "あなたは創造的なDIYアシスタントです。以下の廃材・素材の説明を読み、"
         "アップサイクルのDIYアイデアを日本語で3案提案してください。各アイデアについて、"
         "短い日本語タイトル、1段落の日本語説明、材料（できるだけ提示された素材を再利用）、工具、"
-        "6〜10個の手順（番号付き・簡潔な命令文）、難易度（Easy/Medium/Hard）、およその所要時間（分）を含めてください。"
-        "応答は次のスキーマに完全に一致するJSONのみを返してください。文章やコードフェンスは不要です。\n"
-        "{\n  \"ideas\": [\n    {\n      \"title\": string,\n      \"description\": string,\n      \"materials\": string[],\n      \"tools\": string[],\n      \"steps\": string[],\n      \"difficulty\": string,\n      \"estimated_time_minutes\": number\n    }\n  ]\n}\n"
+        "6〜10個の手順を返してください。手順は配列で、各ステップは{text, operation}のオブジェクトです。"
+        "operation は必ず次のいずれか: 『貼り付ける』『のりを塗る』『切る』『色を塗る』『削る』『その他』。"
+        "text は小学生でも分かる短い命令文で、材料名・工具名を具体的に書いてください。"
+        "難易度（Easy/Medium/Hard）と、およその所要時間（分）も含めてください。"
+        "応答は次の形式のJSONのみを返してください（文章やコードフェンスは禁止）。\n"
+        "{\n  \"ideas\": [\n    {\n      \"title\": string,\n      \"description\": string,\n      \"materials\": string[],\n      \"tools\": string[],\n      \"steps\": [{\n        \"text\": string,\n        \"operation\": \"貼り付ける\" | \"のりを塗る\" | \"切る\" | \"色を塗る\" | \"削る\" | \"その他\"\n      }],\n      \"difficulty\": string,\n      \"estimated_time_minutes\": number\n    }\n  ]\n}\n"
         f"\n素材の説明: {description}\n"
     )
 
@@ -105,11 +108,11 @@ def generate_diy_ideas(description: str) -> dict:
                     "materials": ["1.5L plastic bottle", "potting soil", "herb seeds"],
                     "tools": ["scissors", "marker", "sandpaper"],
                     "steps": [
-                        "Mark a window opening on the side of the bottle.",
-                        "Cut the window and smooth edges with sandpaper.",
-                        "Poke drainage holes on the bottom.",
-                        "Fill with soil and plant seeds.",
-                        "Water lightly and place in sunlight.",
+                        {"text": "ボトルの側面に窓の形をマーカーで描く", "operation": "その他"},
+                        {"text": "描いた線に沿ってはさみで切る", "operation": "切る"},
+                        {"text": "切り口を紙やすりでなめらかにする", "operation": "削る"},
+                        {"text": "底に水抜き穴を数カ所あける", "operation": "その他"},
+                        {"text": "土を入れて種をまく", "operation": "その他"},
                     ],
                     "difficulty": "Easy",
                     "estimated_time_minutes": 30,
@@ -120,11 +123,11 @@ def generate_diy_ideas(description: str) -> dict:
                     "materials": ["corrugated cardboard", "glue", "decorative paper"],
                     "tools": ["box cutter", "ruler", "cutting mat"],
                     "steps": [
-                        "Measure and cut base and dividers.",
-                        "Assemble with glue, ensuring right angles.",
-                        "Add top slots for pens.",
-                        "Wrap with decorative paper.",
-                        "Let dry before use.",
+                        {"text": "ベースと仕切りを定規で測ってカッターで切る", "operation": "切る"},
+                        {"text": "仕切りを土台にのりで貼り付ける", "operation": "貼り付ける"},
+                        {"text": "上部にペン用の小さな仕切りを追加する", "operation": "その他"},
+                        {"text": "外側をデコ紙で包んでのりを塗る", "operation": "のりを塗る"},
+                        {"text": "乾かして完成", "operation": "その他"},
                     ],
                     "difficulty": "Medium",
                     "estimated_time_minutes": 45,
@@ -135,11 +138,11 @@ def generate_diy_ideas(description: str) -> dict:
                     "materials": ["clean tin can", "tea light candle"],
                     "tools": ["hammer", "nail", "marker"],
                     "steps": [
-                        "Fill can with water and freeze to support walls.",
-                        "Mark a dotted pattern.",
-                        "Punch holes with nail and hammer.",
-                        "Let ice melt and dry can.",
-                        "Place candle inside for lantern glow.",
+                        {"text": "缶に水を入れて凍らせ、側面を固くする", "operation": "その他"},
+                        {"text": "点の模様をマーカーで描く", "operation": "その他"},
+                        {"text": "釘とハンマーで点を穴あけする", "operation": "切る"},
+                        {"text": "氷を溶かして缶を乾かす", "operation": "その他"},
+                        {"text": "中にキャンドルを入れて光らせる", "operation": "その他"},
                     ],
                     "difficulty": "Easy",
                     "estimated_time_minutes": 40,

@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
-import useEmblaCarousel from 'embla-carousel-react';
+import { useRef, useState } from 'react';
 import Slide1 from './SlideTutorial/TutorialDetails1';
 import Slide2 from './SlideTutorial/TutorialDetails2';
 import Slide3 from './SlideTutorial/TutorialDetails3';
@@ -10,43 +9,65 @@ import backButton from "../../../../assets/img/backPageButton.png"
 const slides = [<Slide1 />, <Slide2 />, <Slide3 />, <Slide4 />];
 
 export default function SlideShow() {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: false });
+  const [index, setIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchDeltaX, setTouchDeltaX] = useState(0);
 
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-    setCanPrev(emblaApi.canScrollPrev());
-    setCanNext(emblaApi.canScrollNext());
-  }, [emblaApi]);
+  const handleChangeIndex = (i: number) => setIndex(i);
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-  }, [emblaApi, onSelect]);
+  const handleNext = () => {
+    setIndex((prevIndex) => Math.min(prevIndex + 1, slides.length - 1));
+  };
 
-  const handleNext = () => emblaApi?.scrollNext();
-  const handleBack = () => emblaApi?.scrollPrev();
+  const handleBack = () => {
+    setIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  };
+
+  // Simple touch swipe handlers
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.touches[0].clientX);
+    setTouchDeltaX(0);
+  };
+  const onTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX == null) return;
+    setTouchDeltaX(e.touches[0].clientX - touchStartX);
+  };
+  const onTouchEnd = () => {
+    const threshold = 50; // px
+    if (touchDeltaX > threshold) {
+      handleBack();
+    } else if (touchDeltaX < -threshold) {
+      handleNext();
+    }
+    setTouchStartX(null);
+    setTouchDeltaX(0);
+  };
 
   return (
-    <div className="relative w-full mb-20">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex touch-pan-y">
+    <div className="relative w-full mb-20 select-none">
+      <div
+        ref={containerRef}
+        className="overflow-hidden"
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
+      >
+        <div
+          className="flex transition-transform duration-300 ease-out"
+          style={{ transform: `translateX(-${index * 100}%)` }}
+        >
           {slides.map((slide, i) => (
-            <div key={i} className="flex-[0_0_100%] min-w-0">
+            <div key={i} className="min-w-full shrink-0">
               {slide}
             </div>
           ))}
         </div>
       </div>
-      <button onClick={handleBack} disabled={!canPrev || selectedIndex === 0} className="absolute top-1/2 left-8 -translate-y-1/2 p-2 disabled:opacity-50">
+      <button onClick={handleBack} disabled={index === 0} className="absolute top-1/2 left-2 -translate-y-1/2 p-2">
         <img src={backButton} alt="スライドボタン" className='w-10 h-10' />
       </button>
-      <button onClick={handleNext} disabled={!canNext || selectedIndex === slides.length - 1} className="absolute top-1/2 right-8 -translate-y-1/2 p-2 disabled:opacity-50">
+      <button onClick={handleNext} disabled={index === slides.length - 1} className="absolute top-1/2 right-2 -translate-y-1/2 p-2">
         <img src={nextButton} alt="スライドボタン" className='w-11 h-10' />
       </button>
     </div>

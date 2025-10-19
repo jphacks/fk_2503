@@ -3,9 +3,6 @@
 
 <img width="1920" height="1080" alt="gob" src="https://github.com/user-attachments/assets/ba589e98-2c60-48fe-a4f8-75b77eced5ec" />
 
-![27](https://github.com/user-attachments/assets/fd2b6176-76b5-455c-ad9b-8c406a7732d0)
-
-
 ## 製品概要
 リサイクル×Teck：捨てられてしまうごみを<b>ゴブジェクト</b>として生まれ変わらせる、AI工作提案アプリです。</br>
 家庭や学校などで不要になったものを撮影すると、AIがその素材や形状を解析し、リサイクル工作のアイデアと作り方を提案してくれます。</br>

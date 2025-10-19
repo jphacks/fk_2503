@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Header from "../../components/Header"
 import HomeBody from "../../components/HomeBody"
-import background from "../../../assets/img/background.jpg";
 
 export default function Home() {
     useEffect(() => {
@@ -13,15 +12,7 @@ export default function Home() {
     }, []);
 
     return (
-        <div
-            className="flex flex-col min-h-screen"
-            style={{
-                backgroundImage: `url(${background})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-            }}
-        >
+        <div className="flex flex-col min-h-screen">
             <Header />
             <HomeBody />
         </div>

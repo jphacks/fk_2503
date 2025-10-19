@@ -27,7 +27,7 @@ export default function PhotoConfirmation() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black text-white">
+    <div className="flex flex-col min-h-screen">
       <Header title={<img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />} />
       <div className="flex-grow flex flex-col items-center justify-center p-4">
         {imageSrc && (
@@ -49,11 +49,10 @@ export default function PhotoConfirmation() {
             </button>
           )}
         </div>
-        <div className="absolute bottom-4 right-4 text-white text-lg">
+        <div className="absolute bottom-4 right-4 text-neutral-900 text-lg">
           {imageCount}/5
         </div>
       </div>
     </div>
   );
 }
-

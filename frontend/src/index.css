@@ -11,4 +11,9 @@
 /* Default app-wide font to Japanese rounded for better legibility */
 body {
   font-family: 'M PLUS Rounded 1c', 'Hiragino Maru Gothic ProN', 'Noto Sans JP', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  /* Global background: prefer PNG, fallback to JPG */
+  background-image: url('/assets/background.png'), url('/assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

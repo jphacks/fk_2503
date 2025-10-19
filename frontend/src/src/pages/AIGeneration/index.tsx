@@ -198,16 +198,10 @@ export default function AIGeneration() {
     return "";
   };
 
-  const bgStyle: CSSProperties = {
-    backgroundImage: 'url(/assets/background.jpg)',
-    backgroundSize: '100% auto', // 横幅いっぱいに合わせ、縦は自動
-    backgroundRepeat: 'repeat-y', // 縦方向に継ぎ足してスクロール感を出す
-    backgroundPosition: 'top center',
-    backgroundAttachment: 'scroll'
-  };
+  // 背景はグローバルCSS（body）で指定
 
   return (
-    <div className="relative flex flex-col min-h-screen text-black font-pop" style={bgStyle}>
+    <div className="relative flex flex-col min-h-screen text-black font-pop">
       {/* 左上の戻るボタン：一覧=ホームへ、詳細=一覧へ */}
       <img
         src={backButton}

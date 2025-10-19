@@ -13,7 +13,7 @@ export default function CameraScreen() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-black">
+    <div className="flex flex-col min-h-screen">
       <div className="w-full h-20 bg-green-500 border-b-gray-600">
         <div className="flex h-full items-center">
           <img src={backButton} alt="Back" className="ml-2 w-5 h-8" onClick={() => navigate('/')} />
@@ -21,7 +21,7 @@ export default function CameraScreen() {
         </div>
       </div>
       <CameraBody />
-      <div className="absolute bottom-4 right-4 text-white text-lg">
+      <div className="absolute bottom-4 right-4 text-neutral-900 text-lg">
         {imageCount}/5
       </div>
     </div>
